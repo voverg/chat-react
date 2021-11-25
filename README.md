@@ -1,6 +1,6 @@
 # Chat application
 
-This is a simple chat application written with react. You can see this app demo version [this link](https://chat-react-voverg.web.app)
+This is a simple chat app written with react. You can see this app demo version [this link]()
 
 ## Getting Started with Create React App
 
