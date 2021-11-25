@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom';
 
 import {publicRoutes, privateRoutes} from 'routes.js';
-import {Chat, Login} from 'components';
+import {AuthContext} from 'context';
 import {CHAT_ROUTE, LOGIN_ROUTE} from 'utils/consts';
 
 const AppRouter = () => {
-  const user = false;
+  const {isAuth, isLoading} = useContext(AuthContext);
 
-  return user ?
+  return isAuth ?
     (
       <Routes>
         {privateRoutes.map(route =>
