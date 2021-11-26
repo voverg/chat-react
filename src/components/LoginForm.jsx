@@ -4,8 +4,8 @@ import {AuthContext} from 'context';
 import {BaseInput, BaseButton} from 'components/ui';
 
 const LoginForm = (props) => {
-  const {isAuth, setIsAuth, isLoading} = useContext(AuthContext);
-  const [user, setUser] = useState('');
+  const {isAuth, setIsAuth, user, setUser, isLoading} = useContext(AuthContext);
+  // const [user, setUser] = useState('');
 
   const onChange = (event) => {
     const value = event.target.value;
@@ -36,7 +36,7 @@ const LoginForm = (props) => {
       <BaseButton
         className="login-form__btn"
       >
-        Go!
+        Войти
       </BaseButton>
     </form>
   );

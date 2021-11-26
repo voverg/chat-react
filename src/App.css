@@ -13,7 +13,7 @@
 }
 
 #root {
-  background-color: #bcdece;
+  /*background-color: #bcdece;*/
 }
 
 .app {
@@ -92,6 +92,39 @@
 }
 .login-form__btn:hover {
   opacity: .9;
+}
+
+/* Chat */
+.chat {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat__dashboard {
+  flex-grow: 1;
+  padding: 10px 20px;
+  background-color: #bcdece;
+  overflow-y: auto;
+}
+
+.chat__new-message {
+  display: flex;
+  padding: 10px 20px;
+  background-color: #fff;
+}
+
+.chat__input {
+  flex-grow: 1;
+  outline: none;
+  border: none;
+}
+
+.chat__add-btn {
+  margin-left: 10px;
+  background-color: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
 }
 
 

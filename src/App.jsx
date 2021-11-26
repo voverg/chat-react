@@ -7,12 +7,23 @@ import 'App.css';
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
+  const [user, setUser] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (localStorage.getItem('auth')) {
+      setIsAuth(true);
+    }
+
+    setIsLoading(false);
+  }, []);
 
   return (
     <AuthContext.Provider value={{
       isAuth,
       setIsAuth,
+      user,
+      setUser,
       isLoading,
     }}
     >

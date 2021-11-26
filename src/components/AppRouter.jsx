@@ -4,9 +4,14 @@ import {Route, Routes, Navigate} from 'react-router-dom';
 import {publicRoutes, privateRoutes} from 'routes.js';
 import {AuthContext} from 'context';
 import {CHAT_ROUTE, LOGIN_ROUTE} from 'utils/consts';
+import {Spinner} from 'components/ui';
 
 const AppRouter = () => {
   const {isAuth, isLoading} = useContext(AuthContext);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return isAuth ?
     (
