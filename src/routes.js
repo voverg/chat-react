@@ -1,5 +1,5 @@
 import {LOGIN_ROUTE, CHAT_ROUTE} from 'utils/consts.js';
-import {Login, Chat} from 'components';
+import {Login, Chat} from 'pages';
 
 export const publicRoutes = [
   {

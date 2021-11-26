@@ -6,12 +6,10 @@ import {BaseButton} from 'components/ui';
 const Navbar = (props) => {
   const {isAuth, setIsAuth} = useContext(AuthContext);
 
-  const login = () => {
-    setIsAuth(true);
-  }
-
   const logout = () => {
     setIsAuth(false);
+    localStorage.removeItem('auth');
+    localStorage.removeItem('user');
   }
 
   return (
@@ -21,7 +19,7 @@ const Navbar = (props) => {
         {isAuth ?
           <BaseButton className="navbar__btn" onClick={logout}>Выйти</BaseButton>
           :
-          <BaseButton className="navbar__btn" onClick={login}>Логин</BaseButton>
+          <div className="navbar__login">Логин</div>
         }
       </div>
     </div>
