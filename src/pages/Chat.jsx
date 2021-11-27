@@ -6,7 +6,7 @@ import {Message} from 'components';
 import {BaseInput, BaseButton, Spinner} from 'components/ui';
 
 const Chat = (props) => {
-  const {db, collection, getDocs} = useContext(FirebaseContext);
+  const {db, collection, getDocs, addDoc} = useContext(FirebaseContext);
   const {user} = useContext(AuthContext);
   const [value, setValue] = useState('');
   const [messages, setMessages] = useState([]);
@@ -25,7 +25,19 @@ const Chat = (props) => {
 
   const sendMessage = async (event) => {
     event.preventDefault();
-    // console.log(value);
+    console.log(value, user);
+
+    try {
+      const docRef = await addDoc(collection(db, "messages"), {
+        user,
+        message: value,
+        date: new Date().toLocaleString('ru'),
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+
     setValue('');
   };
 
