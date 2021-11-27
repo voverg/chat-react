@@ -130,6 +130,48 @@
   opacity: .9;
 }
 
+.message {
+  display: flex;
+  padding: 10px 0px;
+}
+.message-reverse {
+  flex-direction: row-reverse;
+}
+.message__icon {
+  display: flex;
+  align-items: flex-end;
+}
+.message__icon img {
+  width: 30px;
+}
+.message__text-right, .message__text-left {
+  position: relative;
+  margin: 0 5px;
+  padding: 10px;
+  max-width: calc(100% - 70px);
+  background-color: #fff;
+  border-radius: 5px;
+}
+.message__text-left::before {
+  content: '';
+  position: absolute; /* Абсолютное позиционирование */
+  left: -10px; bottom: 5px; /* Положение треугольника */
+  border: 5px solid transparent; /* Прозрачные границы */
+  border-right: 5px solid #fff /* Добавляем треугольник */
+}
+.message__text-right::before {
+  content: '';
+  position: absolute; /* Абсолютное позиционирование */
+  right: -10px; bottom: 5px; /* Положение треугольника */
+  border: 5px solid transparent; /* Прозрачные границы */
+  border-left: 5px solid #fff /* Добавляем треугольник */
+}
+.author {
+  margin: 0 0 5px 0;
+  font-weight: bold;
+  font-size: 14px;
+}
+
 
 @media (max-width: 768px) {
   .login-form {

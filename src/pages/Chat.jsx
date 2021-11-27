@@ -1,35 +1,45 @@
-import React, {useState, useContext} from 'react';
-import {useCollectionData} from 'react-firebase-hooks/firestore';
+import React, {useState, useEffect, useContext} from 'react';
+// import {useCollection, useCollectionData} from 'react-firebase-hooks/firestore';
 
 import {FirebaseContext, AuthContext} from 'context';
+import {Message} from 'components';
 import {BaseInput, BaseButton, Spinner} from 'components/ui';
 
 const Chat = (props) => {
   const {db, collection, getDocs} = useContext(FirebaseContext);
   const {user} = useContext(AuthContext);
   const [value, setValue] = useState('');
+  const [messages, setMessages] = useState([]);
 
   const getMessages = async (db) => {
     const messagesCol = collection(db, 'messages');
     const messageSnapshot = await getDocs(messagesCol);
     const messageList = messageSnapshot.docs.map(doc => doc.data());
 
-    return messageList;
+    setMessages([...messages, ...messageList]);
   }
 
-  const messages = getMessages(db).then((result) => {
-    console.log(result[0]);
-  });
+  useEffect(() => {
+    getMessages(db);
+  }, []);
 
   const sendMessage = async (event) => {
     event.preventDefault();
-    console.log(value);
+    // console.log(value);
     setValue('');
   };
 
   return (
     <div className="chat">
-      <div className="chat__dashboard">Chat</div>
+      <div className="chat__dashboard">
+        {messages.map(message =>
+          <Message
+            key={message.date.toString()}
+            user={user}
+            message={message}
+          />
+        )}
+      </div>
 
       <form className="chat__new-message" onSubmit={sendMessage}>
         <BaseInput

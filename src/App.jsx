@@ -15,6 +15,10 @@ const App = () => {
       setIsAuth(true);
     }
 
+    if (localStorage.getItem('user')) {
+      setUser(localStorage.getItem('user'));
+    }
+
     setIsLoading(false);
   }, []);
 
