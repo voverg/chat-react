@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useMemo, useContext} from 'react';
 // import {useCollection, useCollectionData} from 'react-firebase-hooks/firestore';
 
 import {FirebaseContext, AuthContext} from 'context';
@@ -6,29 +6,34 @@ import {Message} from 'components';
 import {BaseInput, BaseButton, Spinner} from 'components/ui';
 
 const Chat = (props) => {
-  const {db, collection, getDocs, addDoc} = useContext(FirebaseContext);
-  const {user} = useContext(AuthContext);
+  const {db, collection, getDocs, addDoc, doc, onSnapshot} = useContext(FirebaseContext);
+  const {user, isLoading} = useContext(AuthContext);
   const [value, setValue] = useState('');
   const [messages, setMessages] = useState([]);
 
-  const getMessages = async (db) => {
-    const messagesCol = collection(db, 'messages');
-    const messageSnapshot = await getDocs(messagesCol);
-    const messageList = messageSnapshot.docs.map(doc => doc.data());
-
-    setMessages([...messages, ...messageList]);
-  }
+  // const sortedMessages = useMemo(() => {
+  //   return [...messages.reverse()];
+  // }, [messages]);
 
   useEffect(() => {
-    getMessages(db);
+    const unsub = onSnapshot(collection(db, "messages"), (doc) => {
+        const messageList = [];
+        doc.forEach(item => messageList.push(item.data()));
+
+        setMessages(messageList);
+      });
+
+    return () => {
+      unsub();
+    }
   }, []);
 
   const sendMessage = async (event) => {
     event.preventDefault();
-    console.log(value, user);
 
     try {
       const docRef = await addDoc(collection(db, "messages"), {
+        id: Date.now(),
         user,
         message: value,
         date: new Date().toLocaleString('ru'),
@@ -40,6 +45,10 @@ const Chat = (props) => {
 
     setValue('');
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="chat">

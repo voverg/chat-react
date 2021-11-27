@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, addDoc, doc, onSnapshot } from 'firebase/firestore';
 
 import {FirebaseContext} from 'context';
 import App from 'App';
@@ -28,6 +28,8 @@ ReactDOM.render(
     collection,
     getDocs,
     addDoc,
+    doc,
+    onSnapshot,
   }}>
     <App />
   </FirebaseContext.Provider>,
