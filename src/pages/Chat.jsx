@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useMemo, useContext} from 'react';
-// import {useCollection, useCollectionData} from 'react-firebase-hooks/firestore';
 
 import {FirebaseContext, AuthContext} from 'context';
+import {useSortedMessages} from 'hooks';
 import {Message} from 'components';
 import {BaseInput, BaseButton, Spinner} from 'components/ui';
 
@@ -10,10 +10,8 @@ const Chat = (props) => {
   const {user, isLoading} = useContext(AuthContext);
   const [value, setValue] = useState('');
   const [messages, setMessages] = useState([]);
+  const sortedMessages = useSortedMessages(messages);
 
-  // const sortedMessages = useMemo(() => {
-  //   return [...messages.reverse()];
-  // }, [messages]);
 
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "messages"), (doc) => {
@@ -53,7 +51,7 @@ const Chat = (props) => {
   return (
     <div className="chat">
       <div className="chat__dashboard">
-        {messages.map(message =>
+        {sortedMessages.map(message =>
           <Message
             key={message.date.toString()}
             user={user}
