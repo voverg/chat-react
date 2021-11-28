@@ -2,6 +2,8 @@
 
 This is a simple realtime chat app written with react and firebase. You can see this app demo by [this link](https://voverg.github.io/chat-react/)
 
+![chat image](./pablic/chat.png)
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

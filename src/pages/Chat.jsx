@@ -4,6 +4,7 @@ import {FirebaseContext, AuthContext} from 'context';
 import {useSortedMessages} from 'hooks';
 import {Message} from 'components';
 import {BaseInput, BaseButton, Spinner} from 'components/ui';
+import sendSound from 'assets/sound/send.mp3';
 
 const Chat = (props) => {
   const {db, collection, getDocs, addDoc, doc, onSnapshot} = useContext(FirebaseContext);
@@ -28,6 +29,11 @@ const Chat = (props) => {
 
   const sendMessage = async (event) => {
     event.preventDefault();
+    const playSendSound = () => {
+      const sound = new Audio(sendSound);
+      const clone = sound.cloneNode();
+      clone.play();
+    }
 
     try {
       const docRef = await addDoc(collection(db, "messages"), {
@@ -37,6 +43,8 @@ const Chat = (props) => {
         date: new Date().toLocaleString('ru'),
       });
       console.log("Document written with ID: ", docRef.id);
+
+      playSendSound();
     } catch (e) {
       console.error("Error adding document: ", e);
     }
