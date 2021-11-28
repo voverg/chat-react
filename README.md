@@ -2,7 +2,9 @@
 
 This is a simple realtime chat app written with react and firebase. You can see this app demo by [this link](https://voverg.github.io/chat-react/)
 
-![chat image](./pablic/chat.png)
+Enter any username and send/recieve messages realtime.
+
+![chat image](./public/chat.png)
 
 ## Getting Started with Create React App
 
