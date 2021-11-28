@@ -20,7 +20,7 @@ const Navbar = (props) => {
         {isAuth ?
           <BaseButton className="navbar__btn" onClick={logout}>Выйти</BaseButton>
           :
-          <div className="navbar__login">Логин</div>
+          <div className="navbar__login">Вход</div>
         }
       </div>
     </div>

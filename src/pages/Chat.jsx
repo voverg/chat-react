@@ -20,7 +20,7 @@ const Chat = (props) => {
         const messageList = [];
         doc.forEach(item => messageList.push(item.data()));
 
-        setMessages(messageList);
+        setMessages([...messages, ...messageList]);
       });
 
     return () => {

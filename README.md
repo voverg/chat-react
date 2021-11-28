@@ -1,6 +1,6 @@
 # Chat application
 
-This is a simple chat app written with react. You can see this app demo version [this link]()
+This is a simple realtime chat app written with react and firebase. You can see this app demo by [this link](https://voverg.github.io/chat-react/)
 
 ## Getting Started with Create React App
 
