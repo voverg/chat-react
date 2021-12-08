@@ -9,8 +9,8 @@ const Navbar = (props) => {
   const logout = () => {
     setIsAuth(false);
     setUser('');
-    localStorage.removeItem('auth');
-    localStorage.removeItem('user');
+    localStorage.removeItem('chatAuth');
+    localStorage.removeItem('chatUsername');
   }
 
   return (

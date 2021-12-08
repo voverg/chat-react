@@ -11,12 +11,12 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (localStorage.getItem('auth')) {
+    if (localStorage.getItem('chatAuth')) {
       setIsAuth(true);
     }
 
-    if (localStorage.getItem('user')) {
-      setUser(localStorage.getItem('user'));
+    if (localStorage.getItem('chatUsername')) {
+      setUser(localStorage.getItem('chatUsername'));
     }
 
     setIsLoading(false);

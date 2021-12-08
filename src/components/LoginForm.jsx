@@ -16,8 +16,8 @@ const LoginForm = (props) => {
     event.preventDefault();
     setIsAuth(true);
 
-    localStorage.setItem('auth', 'true');
-    localStorage.setItem('user', `${user}`);
+    localStorage.setItem('chatAuth', 'true');
+    localStorage.setItem('chatUsername', `${user}`);
   };
 
   return (
